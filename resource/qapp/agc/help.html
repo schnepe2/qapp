@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>AGC Help</title>
+  </head>
+  <style>
+    h1,h2,h3,h4 { margin-bottom: 0px }
+    tr:hover { background-color: #ffff99; }
+    th { font-family:courier; font-size: 11; font-weight:normal; text-decoration:underline; text-align: left; }
+    td { font-family:courier; font-size: 11; vertical-align: top; padding-right: 10px; }
+    .r { text-align: right; padding-right: 0px; }
+    .len:after { content: '[nmi]'; }
+    .spd:after { content: '[ft/s]'; }
+    .mas:after { content: '[lbs]'; }
+  </style>
+  <body>
+
+    <h4>VERBS</h4>
+    <table>
+        <tr><th>Code</th><th>Function</th><th>Display location</th></tr>
+
+        <tr><td>5</td><td>Display (in octal)</td><td>R1, R2 &amp; R3</td></tr>
+        <tr><td>6</td><td>Display (in decimal)</td><td>R1, R2 &amp; R3</td></tr>
+        <tr><td>15</td><td>Monitor (in octal)</td><td>R1, R2 &amp; R3</td></tr>
+        <tr><td>16</td><td>Monitor (in decimal)</td><td>R1, R2 &amp; R3</td></tr>
+
+        <tr><td>33</td><td>Proceed Without Data</td><td></td></tr>
+        <tr><td>34</td><td>Terminate</td><td></td></tr>
+
+        <tr><td>35</td><td>Test Lights</td><td>All  Panel Lights</td></tr>
+        <tr><td>36</td><td>Initialize program control software,<br/>
+                           Keyboard and Display System Program</td><td></td></tr>
+        <tr><td>37</td><td>Change Major Mode (Program)</td><td></td></tr>
+        <tr><td>69</td><td>Restart the AGC</td><td></td></tr>
+    </table>
+
+    <h4>NOUNS</h4>
+    <table>
+      <thead>
+        <tr><th>Code</th><th>Data</th><th>Format</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>09</td><td>Alarm codes</td><td>octal</td><td>first</td></tr>
+        <tr><td>  </td><td>           </td><td>octal</td><td>second</td></tr>
+        <tr><td>  </td><td>           </td><td>octal</td><td>third</td></tr>
+        <tr/>
+        <tr><td>29</td><td>Desired launch azimuth</td><td>XXX.XX</td><td>[deg]</td></tr>
+        <tr/>
+        <tr><td>33</td><td>Time of ignition</td><td>00XXX.</td><td>[hrs]</td></tr>
+        <tr><td>  </td><td>                </td><td>000XX.</td><td>[min]</td></tr>
+        <tr><td>  </td><td>                </td><td>0XX.XX</td><td>[sec]</td></tr>
+        <tr/>
+        <tr><td>35</td><td>Time of AGC clock</td><td>00XXX.</td><td>[hrs]</td></tr>
+        <tr><td>  </td><td>                 </td><td>000XX.</td><td>[min]</td></tr>
+        <tr><td>  </td><td>                 </td><td>0XX.XX</td><td>[sec]</td></tr>
+        <tr/>
+        <tr><td>36</td><td>UTC time test             </td><td>00XXX.</td><td>[hrs]</td></tr>
+        <tr><td>  </td><td><small>(fictional)</small></td><td>000XX.</td><td>[min]</td></tr>
+        <tr><td>  </td><td>                          </td><td>0XX.XX</td><td>[sec]</td></tr>
+        <tr/>
+        <tr><td>40</td><td>Time from ignition        </td><td>XXbXX</td><td>[min,sec]</td></tr>
+        <tr><td>  </td><td>Velocity to be gained (VG)</td><td>XXXX.X</td><td class="spd"/></tr>
+        <tr><td>  </td><td>Delta V (accumulated)     </td><td>XXXX.X</td><td class="spd"/></tr>
+        <tr/>
+<!--
+        <tr><td>40</td><td>Time from ignition</td><td>00XXX.</td><td>[hrs]</td></tr>
+        <tr><td>  </td><td>                  </td><td>000XX.</td><td>[min]</td></tr>
+        <tr><td>  </td><td>                  </td><td>0XX.XX</td><td>[sec]</td></tr>
+        <tr/>
+
+ -->
+        <tr><td>43</td><td>Latitude </td><td>XXX.XX</td><td>[deg]</td></tr>
+        <tr><td>  </td><td>Longitude</td><td>XXX.XX</td><td>[deg]</td></tr>
+        <tr><td>  </td><td>Altitude </td><td>XXXX.X</td><td class="len"/></tr>
+        <tr/>
+        <tr><td>44</td><td>Apogee                </td><td>XXXX.X</td><td class="len"/></tr>
+        <tr><td>  </td><td>Perigee               </td><td>XXXX.X</td><td class="len"/></tr>
+        <tr><td>  </td><td>Time of freefall (TFF)</td><td>XXbXX</td> <td>[min,sec]</td></tr>
+        <tr/>
+        <tr><td>47</td><td>LEM weight</td><td>XXXXX.</td><td class="mas"/></tr>
+        <tr><td>  </td><td>CSM weight</td><td>XXXXX.</td><td class="mas"/></tr>
+        <tr/>
+        <tr><td>62</td><td>Inertial velocity magnitude</td><td>XXXXX.</td><td class="spd"/></tr>
+        <tr><td>  </td><td>Altitude rate change       </td><td>XXXXX.</td><td class="spd"/></tr>
+        <tr><td>  </td><td>Altitude above pad radius  </td><td>XXXX.X</td><td class="len"/></tr>
+      </tbody>
+    </table>
+
+    <h4>MAJOR MODES (PROGRAMMS)</h4>
+    <table>
+        <tr><th>Code</th><th>Action</th></tr>
+
+        <tr><td>00</td><td>Idle</td></tr>
+        <tr><td>01</td><td>Pre-launch IMU alignment</td></tr>
+        <tr><td>02</td><td>Pre-launch setup</td></tr>
+        <tr><td>06</td><td>Computer standby mode</td></tr>
+        <tr><td>11</td><td>Saturn V launch control</td></tr>
+    </table>
+
+<!-- THE FOLLOWING DATA IS FROM A15, SO MIGHT NOT FIT THE AGC VERSION! -->
+
+    <h4>CHECKLIST REFERENCE CODES (used with V50 N25)</h4>
+    <table>
+        <tr><th>Code</th><th>Action</th></tr>
+
+        <tr><td>00013</td><td><i>Perform</i> coarse alignment</td></tr>
+        <tr><td>00014</td><td><i>Key in</i> fine alignment option</td></tr>
+        <tr><td>00015</td><td><i>Perform</i> celestial body acquisition</td></tr>
+        <tr><td>00016</td><td><i>Key in</i> Terminate Mark sequence</td></tr>
+        <tr><td>00017</td><td><i>Perform</i> MINKEY rendezvous sequence</td></tr>
+        <tr><td>00020</td><td><i>Perform</i> MINKEY PC pulse torquing</td></tr>
+        <tr><td>00041</td><td><i>Switch</i> CM/SM separation to UP</td></tr>
+        <tr><td>00062</td><td><i>Key in</i> AGC power down (PRO)</td></tr>
+        <tr><td>00202</td><td><i>Perform</i> GNCS automatic maneuver</td></tr>
+        <tr><td>00204</td><td><i>Perform</i> SPS gimbal trim</td></tr>
+    </table>
+    <pre>
+NOTES: <i>Switch</i>  - denotes change position of a console switch
+       <i>Perform</i> - denotes start or end of a task
+       <i>Key in</i>  - denotes key-in of data through the DSKY
+    </pre>
+
+    <h4>ALARM CODES (used with V05 N09)</h4>
+    <table>
+        <tr><th>Code</th><th></th><th>Purpose</th><th>Set by</th></tr>
+
+        <tr><td>00110</td><td></td><td>No mark since last mark reject</td>       <td>SXTMARK</td></tr>
+        <tr><td>00113</td><td></td><td>No inbits (Channel 16)</td>               <td>SXTMARK</td></tr>
+        <tr><td>00114</td><td></td><td>Mark made but not desired</td>            <td>SXTMARK</td></tr>
+        <tr><td>00115</td><td></td><td>Optics torque request with switch not at CMC</td>
+                                                                                 <td>Extended verb optics CDU</td></tr>
+        <tr><td>00116</td><td></td><td>Optics switch altered before 15-second ZERO<br/>time elapsed</td>
+                                                                                 <td>T4RUPT</td></tr>
+        <tr><td>00117</td><td></td><td>Optics torque request with optics not available</td>
+                                                                                 <td>Extended verb optics CDU</td></tr>
+        <tr><td>00120</td><td></td><td>Optics torque request with optics not ZEROED</td>
+                                                                                 <td>T4RUPT</td></tr>
+        <tr><td>00121</td><td></td><td>Optics CDU's no good at time of mark</td> <td>SXTMARK</td></tr>
+
+        <tr><td>00205</td><td></td><td>Bad PIPA reading</td><td>SERVICER</td></tr>
+        <tr><td>00206</td><td></td><td>Zero encode not allowed with coarse align<br/>+ gimbal lock</td><td>IMU mode switch</td></tr>
+        <tr><td>00207</td><td></td><td>ISS turn-on request not present for 90 seconds</td><td>T4RUPT</td></tr>
+        <tr><td>00210</td><td></td><td>IMU not operating</td><td>IMU mode Switch, IMU-2<br/>R02, P51</td></tr>
+        <tr><td>00211</td><td></td><td>Coarse align error-drive &gt;2 degrees</td><td>IMU mode switch</td></tr>
+        <tr><td>00212</td><td></td><td>PIPA fail but PIPA is not being used</td><td>IMU mode switch, T4RUPT</td></tr>
+        <tr><td>00213</td><td></td><td>IMU not operating with turn-on request</td><td>T4RUPT</td></tr>
+        <tr><td>00214</td><td></td><td>Program using IMU when turned off</td><td>T4RUPT</td></tr>
+        <tr><td>00217</td><td></td><td>Bad return from Stall routines</td><td>CURTAINS</td></tr>
+        <tr><td>00220</td><td></td><td>IMU not aligned (no REFSMMAT)</td><td>R02, P51</td></tr>
+
+        <tr><td>00401</td><td></td><td>Desired gimbal angles yield Gimbal Lock</td><td>Fine Align, IMU-2</td></tr>
+        <tr><td>00402</td><td></td><td>Second MIN KEY pulse torque must be done</td><td>P52</td></tr>
+        <tr><td>00404</td><td class="r">*</td><td>Target out of view (trunnion angle &gt;90 degrees)</td><td>R52</td></tr>
+        <tr><td>00405</td><td class="r">*</td><td>Two stars not available</td><td>P52, P54</td></tr>
+        <tr><td>00406</td><td></td><td>Rendezvous navigation not operating</td><td>R21, R23</td></tr>
+        <tr><td>00421</td><td></td><td>W-Matrix overflow</td><td>INTEGRV</td></tr>
+
+        <tr><td>00600</td><td class="r">*</td><td>Imaginary roots on first interation</td><td>P32, P72</td></tr>
+        <tr><td>00601</td><td class="r">*</td><td>Perigee altitude after CSI &lt;85 nmi earth orbit,<br/>35,000 feet moon orbit</td><td>P32, P72</td></tr>
+        <tr><td>00602</td><td class="r">*</td><td>Perigee altitude after CDH &lt;85 nmi earth orbit,<br/>35,000 feet moon orbit</td><td>P32, P72</td></tr>
+        <tr><td>00603</td><td class="r">*</td><td>CSI to CDH time &lt;10 minutes</td><td>P32, P33, P72, P73</td></tr>
+        <tr><td>00604</td><td class="r">*</td><td>CDH to TPI time &lt;10 minutes</td><td>P32, P72</td></tr>
+        <tr><td>00605</td><td class="r">*</td><td>Number of iterations exceeds loop maximum</td><td>P32, P72, P37</td></tr>
+        <tr><td>00606</td><td class="r">*</td><td>DV exceeds maximum</td><td>P32, P72</td></tr>
+        <tr><td>00611</td><td class="r">*</td><td>No TIG for given elevation angle</td><td>P34, P74</td></tr>
+        <tr><td>00612</td><td class="r">*</td><td>State vector in wrong sphere oF influence</td><td>P37</td></tr>
+        <tr><td>00613</td><td class="r">*</td><td>Reentry angle out of limits</td><td>P37</td></tr>
+
+        <tr><td>00777</td><td></td><td>PIPA fail caused ISS warning</td><td>T4RUPT</td></tr>
+
+        <tr><td>01102</td><td></td><td>AGC self-test error</td><td>SELF-CHECK</td></tr>
+        <tr><td>01105</td><td></td><td>Downlink too fast</td><td>T4RUPT</td></tr>
+        <tr><td>01106</td><td></td><td>Uplink too fast</td><td>T4RUPT</td></tr>
+        <tr><td>01107</td><td></td><td>Phase table failure; assume erasable memory is<br/>destroyed</td><td>RESTART</td></tr>
+
+        <tr><td>01301</td><td></td><td>ARCSIN-ARCCOS argument too large</td><td>INTERPRETER</td></tr>
+
+        <tr><td>01407</td><td></td><td>VG increasing</td><td>S40.8</td></tr>
+        <tr><td>01426</td><td class="r">**</td><td>IMU unsatisfactory</td><td>P61, P62</td></tr>
+        <tr><td>01427</td><td class="r">**</td><td>IMU reversed</td><td>P61, P62</td></tr>
+
+        <tr><td>01520</td><td></td><td>V37 request not permitted at this time</td><td>V37</td></tr>
+
+        <tr><td>01600</td><td></td><td>Overflow in Drift Test</td><td>Optical Prealignment<br/>Calibration</td></tr>
+        <tr><td>01601</td><td></td><td>Bad IMU torque</td><td>Optical Prealignment<br/>Calibration</td></tr>
+
+        <tr><td>01703</td><td></td><td>Insufficient time for integration,<br/>TIG was slipped</td><td>R41</d></tr>
+
+        <tr><td>03777</td><td></td><td>ICDU fail caused the ISS warning</td><td>T4RUPT</td></tr>
+        <tr><td>04777</td><td></td><td>ICDU, PIPA fails caused the ISS warning</td><td>T4RUPT</td></tr>
+        <tr><td>07777</td><td></td><td>IMU fail caused the ISS warning</td><td>T4RUPT</td></tr>
+        <tr><td>10777</td><td></td><td>IMU, PIPA falls caused the ISS warning</td><td>T4RUPT</td></tr>
+        <tr><td>13777</td><td></td><td>IMU, ICDU falls caused the ISS warning</td><td>T4RUPT</td></tr>
+        <tr><td>14777</td><td></td><td>IMU, ICDU, PIPA fails caused the ISS warning</td><td>T4RUPT</td></tr>
+
+        <tr><td>20430</td><td></td><td>Integration abort due to subsurface state<br/>vector</td><td>All calls to integration</td></tr>
+
+        <tr><td>20607</td><td></td><td>No solution from Time Theta or Time Radius</td><td>TIMETHET, TIMERAD</td></tr>
+        <tr><td>20610</td><td></td><td>Lambda less than unity</td><td>P37</td></tr>
+
+        <tr><td>21204</td><td></td><td>Negative or zero WAITLIST call</td><td>WAIT LIST</td></tr>
+        <tr><td>21206</td><td></td><td>Second Job attempts to go to sleep via<br/>Keyboard and Display program</td><td>PINBALL</td></tr>
+        <tr><td>21210</td><td></td><td>Two programs using device at same time</td><td>IMU Mode Switch</td></tr>
+
+        <tr><td>21302</td><td></td><td>SQRT called with negative argument</td><td>INTERPRETER</td></tr>
+
+        <tr><td>21501</td><td></td><td>Keyboard and Display alarm during internal<br/>use (NVSUB)</td><td>PINBALL</td></tr>
+        <tr><td>21502</td><td></td><td>Illegal flashing display</td><td>GOPLAY</td></tr>
+        <tr><td>21521</td><td></td><td>P01 illegally selected</td><td>P01</td></tr>
+
+        <tr><td>31104</td><td></td><td>Delay routine busy</td><td>EXECUTIVE</td></tr>
+
+        <tr><td>31201</td><td></td><td>Executive overflow - no VAC areas available</td><td>EXECUTIVE</td></tr>
+        <tr><td>31202</td><td></td><td>Executive overflow - no core sets available</td><td>EXECUTIVE</td></tr>
+        <tr><td>31203</td><td></td><td>WAIILIST overflow - too many tasks</td><td>WAIT LIST</td></tr>
+        <tr><td>31211</td><td></td><td>Illegal interrupt of Extended Verb</td><td>SXTMARK, P23</td></tr>
+    </table>
+    <pre>
+2xxxx - Indicates a go-to-routine 00 type abort.
+3xxxx - Indicates a bailout type abort.
+        Note: For V05 N09 Displays:
+              R1-XXXXX (first alarm to occur after last reset).
+              R2-XXXXX (second alarm to occur after last reset).
+              R3-XXXXX (most recent alarm).
+              Depressing the RSET key on the DSKY will set R1 and R2 to zero,
+              but not affect R3.
+ * This alarm is displayed without the astronaut having to key in V05 N09E.
+   An astronaut DSKY response is required by this alarm.
+** This alarm is displayed without the astronaut having to key on V05 N09E.
+   No DSKY response is required by this alarm.
+</pre>
+
+  </body>
+</html>
